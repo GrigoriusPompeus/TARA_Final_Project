@@ -1,0 +1,6 @@
+{
+  "model_path": "meta-llama/Llama-3.2-1B",
+  "n_items": 817,
+  "mc1_mean": 0.22888616891064872,
+  "mc2_mean": 0.3787863340475924
+}

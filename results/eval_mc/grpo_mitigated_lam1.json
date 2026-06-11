@@ -1,0 +1,6 @@
+{
+  "model_path": "checkpoints/grpo_mitigated_lam1/final",
+  "n_items": 817,
+  "mc1_mean": 0.23011015911872704,
+  "mc2_mean": 0.37364889964267883
+}

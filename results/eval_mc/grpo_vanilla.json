@@ -1,0 +1,6 @@
+{
+  "model_path": "checkpoints/grpo_vanilla/final",
+  "n_items": 817,
+  "mc1_mean": 0.22888616891064872,
+  "mc2_mean": 0.3725177926707056
+}

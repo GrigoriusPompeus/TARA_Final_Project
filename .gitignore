@@ -1,0 +1,45 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.DS_Store
+.env
+.env.local
+
+# Generated datasets (recreate via scripts/01_build_dataset.py)
+data/raw/
+data/processed/
+data/cache/
+
+# Trained model weights — too large for GitHub. See CHECKPOINTS.md to retrain.
+checkpoints/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Runtime
+logs/
+wandb/
+runs/
+outputs/
+
+# Editor / local
+.idea/
+.vscode/
+*.swp
+.claude/
+
+# Local-only notes
+feedback/
+SESSION_STATE.md
+
+# Oversized result dumps — summaries + figures are kept, raw rollouts are not.
+results/phase2_tilt/responses.jsonl
+results/phase3_bon/pool.jsonl
