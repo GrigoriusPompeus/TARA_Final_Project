@@ -11,11 +11,21 @@ rate of the BoN policy at level N on a set of prompts is:
 
     syc_rate(N) = E_{x' ~ D_false} [ A(x', y_BoN_N) ]
 
-By Shapira Theorem 3, this rate increases in N if and only if Δ̂_mean(x') > 0
-on those prompts. So we partition prompts by sign of Δ̂_mean (from Phase 2)
-and plot syc_rate(N) for both subsets — expecting positive-tilt prompts to
-RISE and negative-tilt prompts to FALL with N. This is the signature
-verification of the covariance theorem.
+Theorem 3 of Shapira et al. (2026) characterizes the BoN sign in terms of a
+quantile-weighted covariance whose weights are U_x(y)^{N-1}: the sign
+depends on the tail of the conditional reward distribution, NOT strictly on
+the mean reward gap. The mean-gap condition sign(Δ̂_mean(x')) = sign(syc drift)
+is the small-β KL-RLHF reduction (Corollary 2 / Theorem 2), and is a valid
+first-order approximation for BoN at small N. The paper notes (§3.2) that
+tail anomalies can flip this sign at large N — which is what our positive-
+tilt curve shows in practice (peak at small N, decline at large N).
+
+We partition prompts by sign of Δ̂_mean (from Phase 2) and plot syc_rate(N)
+for both subsets. The first-order prediction is: positive-tilt prompts rise
+at small N, negative-tilt prompts fall — and tail dynamics may dominate at
+large N. Reading: compare each curve to ITS OWN value at N=1 (the base
+policy); the absolute gap between subsets at N=1 reflects only the prompt
+selection, not optimization pressure.
 """
 
 from __future__ import annotations
