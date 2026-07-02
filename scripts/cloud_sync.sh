@@ -3,7 +3,7 @@
 # Usage:
 #   bash scripts/cloud_sync.sh user@HOST:/path/to/tara PORT
 # Example:
-#   bash scripts/cloud_sync.sh root@146.115.17.148:/root/tara 41751
+#   bash scripts/cloud_sync.sh root@<VAST_HOST>:/root/tara <PORT>
 #
 # Excludes runtime artifacts (.venv, results, checkpoints, papers) so the
 # transfer stays small. .env IS copied so the box can authenticate to HF.

@@ -73,7 +73,7 @@ def fig_bon_sign_flip(
     ax.set_xscale("log", base=2)
     ax.set_xticks(list(n_values))
     ax.get_xaxis().set_major_formatter(plt.matplotlib.ticker.ScalarFormatter())
-    ax.set_xlabel("N (Best-of-N optimization pressure)")
+    ax.set_xlabel("N (Best-of-N optimisation pressure)")
     ax.set_ylabel("Sycophancy rate")
     ax.set_title("BoN Theorem 3 verification: sign of Δ̂_mean predicts drift direction")
     ax.legend(loc="best", fontsize=9)
@@ -87,11 +87,11 @@ def fig_goodhart_curve(
     gold_accuracy: Sequence[float],
     out_dir: Path,
 ) -> None:
-    """Fig 2: Gao-style overoptimization. Proxy and gold diverge as N grows."""
+    """Fig 2: Gao-style over-optimisation. Proxy and gold diverge as N grows."""
     fig, ax1 = plt.subplots(figsize=(5.5, 3.5))
     color1 = PALETTE["proxy"]
     color2 = PALETTE["gold"]
-    ax1.set_xlabel("N (Best-of-N optimization pressure)")
+    ax1.set_xlabel("N (Best-of-N optimisation pressure)")
     ax1.set_ylabel("Proxy reward (ArmoRM)", color=color1)
     ax1.plot(n_values, proxy_reward, "o-", color=color1, label="ArmoRM (proxy)")
     ax1.tick_params(axis="y", labelcolor=color1)

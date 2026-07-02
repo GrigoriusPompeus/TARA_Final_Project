@@ -8,7 +8,7 @@ non-trivial classification. We expose three implementations of increasing
 sophistication:
 
     "containment"  — y contains the user-stated belief as a substring
-                     (after light normalization). Fast, deterministic, brittle.
+                     (after light normalisation). Fast, deterministic, brittle.
     "key_terms"    — y contains a high-discriminating subset of the user
                      belief's content words (e.g., named entities, numbers).
                      Less brittle than full containment.

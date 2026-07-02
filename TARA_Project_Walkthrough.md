@@ -207,7 +207,7 @@ The pointwise form is the **unique KL-closest policy to vanilla RLHF that doesn'
 
 ⚠️ **v2 correction.** We use the **global form with λ = 1.0**. ArmoRM rewards cluster around 0.04–0.10, so a penalty of 1.0 is ~10–25× the entire reward scale. This is **not** the paper's minimal λ*(x). v1 of this document called our run "the Theorem 6 corrected reward"; v2 corrects to **"a strong fixed-λ instantiation of the paper's global-penalty form (Eq. 12)."**
 
-⚠️ **GRPO normalisation caveat.** GRPO normalizes rewards within each group of 8 generations. On prompts where all 8 generations agree (or all disagree) on the belief, the penalty is constant within the group and gets normalised away. The mitigation silently does nothing on monolithically-behaving prompts.
+⚠️ **GRPO normalisation caveat.** GRPO normalises rewards within each group of 8 generations. On prompts where all 8 generations agree (or all disagree) on the belief, the penalty is constant within the group and gets normalised away. The mitigation silently does nothing on monolithically-behaving prompts.
 
 We test this in **Phase 4 vs Phase 5**.
 
@@ -291,7 +291,7 @@ The positive-tilt curve's **non-monotonicity is predicted by the paper**, not a 
 **Code:** `scripts/04_grpo_train.py`, `src/grpo/train.py`.
 **What it does:** Fine-tune Llama-3.2-1B Base on 1k prompts via GRPO with G=8, β=0.04.
 
-**Original run:** lr=1e-6, **n_epochs = 1** → ended at KL ≈ 0.005 from base. *(v1 of this document said "2 epochs". The mitigation sweep script defaults to 1 epoch and CHECKPOINTS.md confirms ~1.)*
+**Original run:** lr=1e-6, **n_epochs = 2** → ended at KL ≈ 0.005 from base. *(Confirmed by `training_args.bin` in `grpo_vanilla/final/` and `grpo_mitigated_lam1/final/`: `num_train_epochs = 2`. A v2 draft briefly "corrected" this to 1 based on `05_mitigation_sweep.py`'s CLI default; the actual runs used the `04_grpo_train.py` config default of 2.)*
 
 **Extended run** (run on 2026-06-12 on a fresh A100): lr=3e-6, n_epochs=4 → expected KL ≈ 0.05 from base. ~6× more policy movement. Available in `checkpoints/grpo_vanilla_extended/final/` as Q&A backup; not in the headline result.
 
@@ -303,7 +303,7 @@ The positive-tilt curve's **non-monotonicity is predicted by the paper**, not a 
 
 ⚠️ **Calibration caveat.** ArmoRM scores cluster around 0.04–0.10. λ = 1.0 means the penalty term dominates the reward by ~10–25× on belief-wrong prompts. Call this **"a strong fixed-λ instantiation of the paper's global-penalty form"**, not "the Theorem 6 corrected reward" (which would imply the minimal λ*(x)).
 
-⚠️ **GRPO normalisation caveat.** GRPO normalizes rewards within each group of 8 generations. On prompts where all 8 generations behave the same way w.r.t. agreement, the penalty is constant within the group and is normalised away. The mitigation silently does nothing on exactly the most monolithically sycophantic prompts.
+⚠️ **GRPO normalisation caveat.** GRPO normalises rewards within each group of 8 generations. On prompts where all 8 generations behave the same way w.r.t. agreement, the penalty is constant within the group and is normalised away. The mitigation silently does nothing on exactly the most monolithically sycophantic prompts.
 
 *(v1 of this document made training-log claims — "reward stayed negative throughout", "10× variance" — that can't be cited because the logs are gitignored. v2 drops them.)*
 
@@ -474,7 +474,7 @@ We use string-match against the user's stated belief — which is exact for mult
 
 ---
 
-## Part 9 — One-paragraph summary you can memorize (v2)
+## Part 9 — One-paragraph summary you can memorise (v2)
 
 > *At the reward-tilt level (the premise of Shapira's Theorems 1–2), we empirically measured P(positive tilt) = 0.57 on a 2,630-prompt set. At the Best-of-N level, the positive-tilt subset amplified at small N and declined at large N — empirical confirmation of the paper's predicted tail-sensitivity (§3.2, Appendix D.1). We trained vanilla and Theorem-6-mitigated GRPO at light-touch verification scale (~0.005 KL drift). The argmax sycophancy metric reported sub-noise effects, but a paired probability-weighted re-analysis of our own saved evaluation log-probabilities revealed a small (~0.33 pp), highly statistically significant (z = −11.4) reduction in agreement probability under mitigation, with capability fully preserved.*
 
@@ -491,7 +491,7 @@ We use string-match against the user's stated belief — which is exact for mult
 | λ=1.0 framing | "the Theorem 6 corrected reward" | "a strong fixed-λ instantiation of the global-penalty form (Eq. 12)" | ArmoRM scores ~0.04–0.10; λ=1.0 = ~10–25× the reward scale. Not the minimal λ*(x). |
 | Theorem 3 sign condition | "iff Δ_mean > 0" | "Theorem 3 uses quantile-weighted covariance U_x(y)^{N-1}; mean-gap iff is the small-β / Corollary-2 reduction" | Paper §3.2. `src/bon/curve.py` docstring corrected. |
 | `sycophancy_rate` field in `summary.json` | (used as if a policy metric) | flagged: it's P(positive tilt), a RM property | Three different metrics share the name in the repo. |
-| Epoch count | "2 epochs" | **1 epoch** | `05_mitigation_sweep.py` defaults to 1; CHECKPOINTS.md says ~1. |
+| Epoch count | "1 epoch" (v2 draft) | **2 epochs** | Confirmed by `training_args.bin` in both `grpo_vanilla/final/` and `grpo_mitigated_lam1/final/`: `num_train_epochs = 2`. v2 draft over-corrected based on `05_mitigation_sweep.py`'s CLI default. |
 | `are_you_sure` strategy | mentioned as if used | implemented but **never run** | All 7,890 probes in `data/processed/probes_all.jsonl` are answer_suggestion or neutral. |
 | Yes/Actually primes | "same primes Sharma et al. and Shapira et al. used" | "in the spirit of Sharma et al.'s priming approach" | Not verbatim from either paper. |
 | Phase 2 tilt | (treated as the paper's covariance) | flagged as **steered proxy** | Measured on primed generations, not free π_base samples. |

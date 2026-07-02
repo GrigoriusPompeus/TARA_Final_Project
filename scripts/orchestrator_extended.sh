@@ -16,7 +16,7 @@
 #   - training failure  -> LEAVE instance running for debug, exit non-zero
 #
 # Launch with:
-#   ssh -p 41751 root@146.115.17.148 \
+#   ssh -p <PORT> root@<VAST_HOST> \
 #     'nohup bash /root/tara/scripts/orchestrator_extended.sh \
 #        > /root/tara/logs/orchestrator_extended.log 2>&1 < /dev/null & disown'
 
@@ -29,7 +29,7 @@ set -a
 . /root/tara/.env
 set +a
 
-INSTANCE_ID=39731648
+INSTANCE_ID="${INSTANCE_ID:-<vast-instance-id>}"
 RUN_NAME=grpo_vanilla_extended
 TRAIN_LOG=/root/tara/logs/${RUN_NAME}.log
 OUT_DIR=/root/tara/checkpoints/${RUN_NAME}

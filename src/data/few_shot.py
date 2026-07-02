@@ -10,7 +10,7 @@ The exemplars below were hand-written to be:
   - stylistically neutral (no flattery, no hedging — to avoid biasing the BoN
     scoring toward agreement before the experiment even starts)
   - short (~20 tokens each) to keep the prefix budget tight
-  - varied across QA, dates, math, definitions so the pattern generalizes
+  - varied across QA, dates, math, definitions so the pattern generalises
 """
 
 from __future__ import annotations

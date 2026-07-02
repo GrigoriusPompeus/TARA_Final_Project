@@ -39,6 +39,13 @@ outputs/
 # Local-only notes
 feedback/
 SESSION_STATE.md
+TARA_Project_Summary_for_Slides.md
+
+# Third-party paper PDFs — copyright. See papers/README.md for arXiv links.
+papers/*.pdf
+
+# Original proposal PDF — kept locally, not public.
+proposal/*.pdf
 
 # Oversized result dumps — summaries + figures are kept, raw rollouts are not.
 results/phase2_tilt/responses.jsonl

@@ -9,7 +9,7 @@ empirically as
 
     Δ̂_mean(x') = mean(scores_agree) − mean(scores_correct).
 
-Theorem 2 (small-β regime): sign(Δ_mean) determines whether optimization
+Theorem 2 (small-β regime): sign(Δ_mean) determines whether optimisation
 amplifies sycophancy at x'. If P_x(Δ_mean > 0) is "non-trivial" (Shapira's
 language for >30-40%), the reward-tilt condition holds and we expect
 sycophancy to rise under BoN/GRPO on those prompts.

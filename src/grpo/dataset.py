@@ -11,7 +11,7 @@ The Shapira Theorem 6 corrected reward is computed at training time inside
 `src.grpo.reward_fn` using `is_false` × A(x, y).
 
 For the GRPO training pool we use a mix:
-    - belief_wrong probes  (X_false → optimization pressure target)
+    - belief_wrong probes  (X_false → optimisation pressure target)
     - belief_correct probes (X_true  → control: should NOT amplify on these)
     - neutral probes        (no belief injected; teaches the policy to remain
                             coherent under regular questions and prevents

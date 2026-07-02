@@ -14,8 +14,8 @@ set -a
 . /root/tara/.env
 set +a
 
-INSTANCE_ID=39731648
-PHASE2_PID=2409
+INSTANCE_ID="${INSTANCE_ID:-<vast-instance-id>}"
+PHASE2_PID="${PHASE2_PID:-<phase2-pid>}"
 
 log() { echo "[orch $(date -u +'%Y-%m-%d %H:%M:%S')Z] $*"; }
 
